@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   myTabs(tabs, tabswrap, tabContents);
 
-  let deadLine = "2020-06-20";
+  let deadLine = "2020-06-25";
 
   let timer = document.getElementById("timer"),
     timerHours = timer.querySelector(".hours"),
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
   setInterval(timerRemaining, 1000);
-});
+
 
 function myTabs(tab, tabWrapper, tabContent) {
   function hideTab(a) {
@@ -68,6 +68,30 @@ function myTabs(tab, tabWrapper, tabContent) {
     }
   });
 }
+let overlay= document.querySelector('.overlay'),
+      close=document.querySelector('.popup-close'),
+      btn=document.querySelector('.more'),
+      miniBtn=document.querySelectorAll('.description-btn');
+   
+
+      for (let i=0; i<miniBtn.length; i++){
+        miniBtn[i].addEventListener('click',()=>{
+          overlay.style.display='block';
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+
+      btn.addEventListener('click', ()=>{
+        overlay.style.display='block'; 
+        document.body.style.overflow = 'hidden';
+      
+      });
+      close.addEventListener('click', ()=>{
+        overlay.style.display='none'; 
+        document.body.style.overflow = '';
+      });
+
 
 // по уроку
 
@@ -118,3 +142,4 @@ function myTabs(tab, tabWrapper, tabContent) {
 // }
 
 // setClock(deadLine, "timer");
+});

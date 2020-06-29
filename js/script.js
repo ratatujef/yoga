@@ -95,7 +95,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       //form
 
-    let myform=document.querySelector('.main-form'),
+    let myform=document.getElementsByTagName('form'),
         input=document.getElementsByTagName('input'),
         statusMessage=document.createElement('div'),
         message= {
@@ -104,35 +104,40 @@ window.addEventListener("DOMContentLoaded", function () {
           failure:'Произошла ошибка!'
         };
         statusMessage.classList.add('status');
-        myform.addEventListener('submit', function(e){
-        e.preventDefault();
-        myform.appendChild(statusMessage);
+        for (let n=0; n<myform.length;n++){
 
-        let request = new XMLHttpRequest();
-        request.open('POST', 'server.php');
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      
-        let formData= new FormData(myform),
-        obj={};
-        formData.forEach((value, key) => {
-          obj[key]=value;
-        });
-        let json=JSON.stringify(obj);
-
-        request.send(json);
-        request.addEventListener('readystatechange', ()=>{
-          if(request.readyState===4&&request.status==200){
-            statusMessage.innerHTML=message.success;
-          } else if (request.readyState<4){
-            statusMessage.innerHTML=message.loading;
-          }else{
-            statusMessage.innerHTML=message.failure;
-          }
-
-        });
-        for (let i=0; i<input.length; i++){
-          input[i].value='';
-        }
-
-          });
+        
+        
+          myform[n].addEventListener('submit', function(e){
+            e.preventDefault();
+            myform[n].appendChild(statusMessage);
+    
+            let request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          
+            let formData= new FormData(myform[n]),
+            obj={};
+            formData.forEach((value, key) => {
+              obj[key]=value;
+            });
+            let json=JSON.stringify(obj);
+    
+            request.send(json);
+            request.addEventListener('readystatechange', ()=>{
+              if(request.readyState===4&&request.status==200){
+                statusMessage.innerHTML=message.success;
+              } else if (request.readyState<4){
+                statusMessage.innerHTML=message.loading;
+              }else{
+                statusMessage.innerHTML=message.failure;
+              }
+    
+            });
+            for (let i=0; i<input.length; i++){
+              input[i].value='';
+            }
+    
+              });
+            }
 });

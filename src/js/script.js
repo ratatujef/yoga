@@ -13,6 +13,10 @@ window.addEventListener("DOMContentLoaded", function () {
     timerMinutes = timer.querySelector(".minutes"),
     timerSeconds = timer.querySelector(".seconds");
 
+  timerHours.textContent = "00";
+  timerMinutes.textContent = "00";
+  timerSeconds.textContent = "00";
+
   function timerRemaining() {
     function addZero(a) {
       if (a < 10) {

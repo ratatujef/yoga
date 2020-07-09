@@ -47,9 +47,11 @@ gulp.task("html", function () {
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest("dist/"));
 });
-gulp.task("scripts", function () {
-  return gulp.src("src/js/**/*.js").pipe(gulp.dest("dist/js/"));
-});
+
+// теперь не нужно, настроен webpack
+// gulp.task("scripts", function () {
+//   return gulp.src("src/js/**/*.js").pipe(gulp.dest("dist/js/"));
+// });
 gulp.task("fonts", function () {
   return gulp.src("src/fonts/**/*").pipe(gulp.dest("dist/fonts/"));
 });
@@ -83,7 +85,7 @@ gulp.task(
     "server",
     "styles",
     "html",
-    "scripts",
+    // "scripts",
     "fonts",
     "mailer",
     "icons",
